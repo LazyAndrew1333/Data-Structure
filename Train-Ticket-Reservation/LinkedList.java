@@ -37,7 +37,11 @@ public class LinkedList {
 			if (current.seat < seatNumber) {
 				current = current.next;
 			} else if (current.seat == seatNumber) {
-				current.reservation = true;
+				if (current.reservation) {
+					System.out.println("Error: Cannot reserve an already reserved seat");
+				} else {
+					current.reservation = true;
+				}
 				break;
 			}
 		}
@@ -66,8 +70,13 @@ public class LinkedList {
 			if (current.seat < seatNumber) {
 				current = current.next;
 			} else if (current.seat == seatNumber) {
-				current.reservation = false;
-			};
+				if (current.reservation) {
+					current.reservation = false;
+				} else {
+					System.out.println("Error: Cannot cancel reservation on available seat");
+				}
+				break;
+			}
 		}
 		
 		// While loop used to iterate throughout the entire reservation linked list to find and select a specific reserved seat.
@@ -112,10 +121,20 @@ public class LinkedList {
 	}
 	
 	public void reservedSeats() {
-		
+		Node currentReservation = reservationHead;
+		while (currentReservation != null) {
+			System.out.println("Seat Number: " + currentReservation);
+			currentReservation = currentReservation.next;
+		}
 	}
 	
 	public void availableSeats() {
-		
+		Node current = head;
+		while (current != null) {
+			if (current.reservation = false) {
+				System.out.println("Seat Number: " + current);
+				current = current.next;
+			}
+		}
 	}
 }
