@@ -1,5 +1,3 @@
-package dsaTrainRes;
-
 public class LinkedList {
 	Node head;
 	Node tail;
