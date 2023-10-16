@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
-import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -29,8 +27,8 @@ public class App {
 	/**
 	 * @wbp.nonvisual location=163,-36
 	 */
-	private final JLabel label = new JLabel("New label");
-
+//	private final JLabel label = new JLabel("New label");
+	
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +57,7 @@ public class App {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1051, 773);
+		frame.setBounds(100, 100, 708, 773);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -68,12 +66,14 @@ public class App {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Input:");
-		lblNewLabel.setBounds(10, 10, 136, 54);
+		JLabel lblNewLabel = new JLabel("INPUT");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 243, 311, 54);
 		panel.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
 		
-		inputTextField = new JTextField();
+		inputTextField = new JTextField(15);
+		inputTextField.setDocument(new JTextFieldLimit(35));
 		inputTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String input = inputTextField.getText();
@@ -99,11 +99,15 @@ public class App {
 		});
 		inputTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		inputTextField.setHorizontalAlignment(SwingConstants.CENTER);
-		inputTextField.setBounds(10, 217, 311, 86);
+		inputTextField.setBounds(10, 307, 311, 86);
 		panel.add(inputTextField);
 		inputTextField.setColumns(10);
 		
 		JButton btnCopy = new JButton("COPY");
+		btnCopy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCopy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -129,27 +133,24 @@ public class App {
 			}
 		});
 		btnCopy.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnCopy.setBounds(10, 345, 311, 54);
+		btnCopy.setBounds(10, 403, 311, 54);
 		panel.add(btnCopy);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(692, 10, 331, 716);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblOutput = new JLabel("Output:");
-		lblOutput.setBounds(185, 10, 136, 54);
-		panel_1.add(lblOutput);
-		lblOutput.setHorizontalAlignment(SwingConstants.RIGHT);
+		JLabel lblOutput = new JLabel("OUTPUT");
+		lblOutput.setBounds(10, 494, 311, 54);
+		panel.add(lblOutput);
+		lblOutput.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOutput.setFont(new Font("Tahoma", Font.BOLD, 25));
 		
 		outputLabel = new JLabel(">output goes here<");
+		outputLabel.setBounds(10, 558, 311, 84);
+		panel.add(outputLabel);
 		outputLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		outputLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		outputLabel.setBounds(10, 218, 311, 84);
-		panel_1.add(outputLabel);
 		
 		JButton btnPaste = new JButton("PASTE");
+		btnPaste.setBounds(10, 652, 311, 54);
+		panel.add(btnPaste);
 		btnPaste.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -157,8 +158,18 @@ public class App {
 			}
 		});
 		btnPaste.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnPaste.setBounds(10, 345, 311, 54);
-		panel_1.add(btnPaste);
+		
+		JLabel lblNewLabel_1 = new JLabel("Extended Clipboard Showcase");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(10, 66, 311, 71);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Jasper Maraño | John Andrew Divina");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		lblNewLabel_2.setBounds(10, 101, 311, 71);
+		panel.add(lblNewLabel_2);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(10, 10, 331, 716);
@@ -183,6 +194,7 @@ public class App {
 		lblExtendedClipboard.setBounds(10, 149, 311, 34);
 		panel_2.add(lblExtendedClipboard);
 		
+		// START OF EXTENDED CLIPBOARD BUTTONS
 		ecItems[0] = new JButton("Item 1");
 		ecItems[0].addMouseListener(new MouseAdapter() {
 			@Override
@@ -362,5 +374,6 @@ public class App {
 		ecItems[14].setBounds(10, 625, 311, 21);
 		panel_2.add(ecItems[14]);
 		ecItems[14].setVisible(false);
+		// END OF EXTENDED CLIPBOARD BUTTONS
 	}
 }
